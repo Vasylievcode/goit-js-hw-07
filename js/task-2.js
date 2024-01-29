@@ -28,17 +28,54 @@ const images = [
   },
 ];
 
-const galleryList = document.querySelector('.gallery');
-function createGallery(imagesArray){
-  imagesArray.forEach((image) => {
-  const listEl = document.createElement('li')
-  const imageEl = document.createElement('img')
-  imageEl.src = image.url
-  imageEl.alt = image.alt
-  listEl.append(imageEl)
-  galleryList.append(listEl)
-})
+// const galleryList = document.querySelector('.gallery');
+// function createGallery(imagesArray){
+//   imagesArray.forEach((image) => {
+//   const listEl = document.createElement('li')
+//   const imageEl = document.createElement('img')
+//   imageEl.src = image.url
+//   imageEl.alt = image.alt
+//   listEl.append(imageEl)
+//   galleryList.append(listEl)
+// })
+// }
+// createGallery(images)
+
+// const galleryList = document.querySelector('.gallery');
+// function createGallery(imagesArray){
+//   const imageGallery = imagesArray.map((image) => {
+//   const listEl = document.createElement('li')
+//   const imageEl = document.createElement('img')
+//   imageEl.src = image.url
+//   imageEl.alt = image.alt
+//   listEl.append(imageEl)
+//   return listEl
+// })
+// galleryList.append(...imageGallery)
+// }
+// createGallery(images)
+
+
+"<li><img alt='some text' src='your src'/></li>"
+// 1)Створити функцію для створення одного елемента галереї
+// 2)Перебрати масив картинок і створити необхідну кільксть елементів
+// 3)Додати усі елементи до ДОМ за одну ітерацію
+
+
+const galleryList=document.querySelector('.gallery');
+function createGalleryItem(url, alt) {
+  return `<li><img alt=${alt} src=${url}/></li>`
 }
-createGallery(images)
+const itemsArray = images.map((image)=>{
+  return createGalleryItem(image.url , image.alt)
+})
+
+const template =  itemsArray.join("")
+console.log(template)
+
+// galleryList.innerHTML = template
+galleryList.insertAdjacentHTML("afterbegin", template)
 
 
+
+// const template1 = images.map(createGalleryItem)
